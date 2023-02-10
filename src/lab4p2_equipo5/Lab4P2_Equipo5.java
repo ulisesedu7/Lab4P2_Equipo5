@@ -9,8 +9,9 @@ public class Lab4P2_Equipo5 {
   }
   
   public static void crearTablero() {
-    tablero[0][0] = "T";
-    tablero[0][4] = " ";
+    tablero[1][0] = new Peon("a2", 1, "Peon");
+    tablero[0][0] = " ";
+    
   }
 
 }

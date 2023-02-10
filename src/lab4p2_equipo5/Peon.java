@@ -5,8 +5,8 @@ public class Peon extends Pieza {
   public Peon() {
   }
 
-  public Peon(String coordenadaPieza, String coordenadaMov, int colorPieza) {
-    super(coordenadaPieza, coordenadaMov, colorPieza);
+  public Peon(String coordenadaPieza, int colorPieza, String nombre) {
+    super(coordenadaPieza, colorPieza, nombre);
   }
 
   @Override
@@ -22,17 +22,23 @@ public class Peon extends Pieza {
     int[] posicionMovPieza = transformarPosicion(coordenadaMov);
     int posicionMovPiezaX = posicionMovPieza[0];
     int posicionMovPiezaY = posicionMovPieza[1];
+        
+    // valor ascci de la pieza en el tablero
+    int asciiPieza = ((char) tablero[posicionMovPiezaX][posicionMovPiezaY]);  
 
     // Validacion del tablero con Peon
     if (coordenadaPieza.equals(getCoordenadaPieza())) {
 
       // Validar que se mueva del color que debe
-      if (getColorPieza() == 1) {
-        if (((String) tablero[0][0]).equals("p")) { // Corregir a la posicion
-
+      if (getColorPieza() == 0) {
+        // Check que no haya una pieza del mismo jugador en esa posicion
+        if (asciiPieza >= 65 || asciiPieza <= 90) { 
+          
         }
       } else {
-
+        if (asciiPieza >= 97 || asciiPieza <= 122) {
+          
+        }
       }
     }
 

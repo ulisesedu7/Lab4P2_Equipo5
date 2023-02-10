@@ -1,6 +1,9 @@
 package lab4p2_equipo5;
 
 public abstract class Pieza {
+  // Nombre de la pieza 
+  public String nombre;
+  
   // atributo para determinar donde esta la pieza
   protected String coordenadaPieza;
   
@@ -17,10 +20,10 @@ public abstract class Pieza {
   public Pieza() {
   }
 
-  public Pieza(String coordenadaPieza, String coordenadaMov, int colorPieza) {
+  public Pieza(String coordenadaPieza, int colorPieza, String nombre) {
     this.coordenadaPieza = coordenadaPieza;
-    this.coordenadaMov = coordenadaMov;
     this.colorPieza = colorPieza;
+    this.nombre = nombre;
   }
 
   public String getCoordenadaPieza() {
@@ -61,6 +64,14 @@ public abstract class Pieza {
 
   public void setPiezaComida(String piezaComida) {
     this.piezaComida = piezaComida;
+  }
+
+  public String getNombre() {
+    return nombre;
+  }
+
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
   }
 
   @Override

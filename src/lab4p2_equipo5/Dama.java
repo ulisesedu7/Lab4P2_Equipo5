@@ -5,8 +5,8 @@ public class Dama extends Pieza {
   public Dama() {
   }
 
-  public Dama(String coordenadaPieza, String coordenadaMov, int colorPieza) {
-    super(coordenadaPieza, coordenadaMov, colorPieza);
+  public Dama(String coordenadaPieza, int colorPieza, String nombre) {
+    super(coordenadaPieza, colorPieza, nombre);
   }
 
   @Override
