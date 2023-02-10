@@ -9,6 +9,9 @@ public abstract class Pieza {
   
   // Atributo para determinar si la pieza es blanca o negra
   protected int colorPieza; // si es 1 -> Blanca, si es 0 -> negra
+  
+  // Atributo para saber si comio piezas
+  public boolean comio;
 
   public Pieza() {
   }
@@ -41,6 +44,14 @@ public abstract class Pieza {
 
   public void setColorPieza(int colorPieza) {
     this.colorPieza = colorPieza;
+  }
+
+  public boolean isComio() {
+    return comio;
+  }
+
+  public void setComio(boolean comio) {
+    this.comio = comio;
   }
 
   @Override
