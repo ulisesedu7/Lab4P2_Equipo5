@@ -61,17 +61,24 @@ public class Peon extends Pieza {
           }
         }
       } else { // Valicar si desea comer o no
-          if(getColorPieza() == 0) {
-            if (asciiPiezaMov >= 65 || asciiPiezaMov <= 90) {
-              if(posicionMovPiezaY - posicionPiezaY == 1 && posicionMovPiezaX - posicionPiezaX == 1) {
+        if (getColorPieza() == 0) {
+          if (asciiPiezaMov >= 65 || asciiPiezaMov <= 90) {
+            if (posicionMovPiezaY - posicionPiezaY == 1 && posicionMovPiezaX - posicionPiezaX == 1) {
+              check = true;
+              setComio(true);
+              setPiezaComida(((Pieza) tablero[posicionMovPiezaX][posicionMovPiezaY]).getNombre());
+            }
+          } else {
+            if (asciiPiezaMov >= 97 || asciiPiezaMov <= 122) {
+              if (posicionMovPiezaY - posicionPiezaY == 1 && posicionMovPiezaX - posicionPiezaX == 1) {
                 check = true;
                 setComio(true);
                 setPiezaComida(((Pieza) tablero[posicionMovPiezaX][posicionMovPiezaY]).getNombre());
               }
             }
           }
+        }
       }
-      
     }
 
     return check;
@@ -117,7 +124,7 @@ public class Peon extends Pieza {
       }
     }
 
-    posicionPieza[1] = posicionY-1;
+    posicionPieza[1] = posicionY - 1;
 
     return posicionPieza;
   }
