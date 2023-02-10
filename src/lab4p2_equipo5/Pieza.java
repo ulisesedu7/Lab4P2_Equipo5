@@ -12,6 +12,7 @@ public abstract class Pieza {
   
   // Atributo para saber si comio piezas
   public boolean comio;
+  public String piezaComida;
 
   public Pieza() {
   }
@@ -52,6 +53,14 @@ public abstract class Pieza {
 
   public void setComio(boolean comio) {
     this.comio = comio;
+  }
+
+  public String getPiezaComida() {
+    return piezaComida;
+  }
+
+  public void setPiezaComida(String piezaComida) {
+    this.piezaComida = piezaComida;
   }
 
   @Override

@@ -15,16 +15,20 @@ public class Peon extends Pieza {
     boolean check = false;
 
     // extraer posiciones
-    int[] posicionPieza;
+    int[] posicionPieza = transformarPosicion(coordenadaPieza);
+    int posicionPiezaX = posicionPieza[0];
+    int posicionPiezaY = posicionPieza[1];
 
-    int[] posicionMovPieza;
+    int[] posicionMovPieza = transformarPosicion(coordenadaMov);
+    int posicionMovPiezaX = posicionMovPieza[0];
+    int posicionMovPiezaY = posicionMovPieza[1];
 
     // Validacion del tablero con Peon
     if (coordenadaPieza.equals(getCoordenadaPieza())) {
 
       // Validar que se mueva del color que debe
       if (getColorPieza() == 1) {
-        if (((String) tablero[0][0]).equals("p")) {
+        if (((String) tablero[0][0]).equals("p")) { // Corregir a la posicion
 
         }
       } else {
@@ -39,7 +43,7 @@ public class Peon extends Pieza {
     int[] posicionPieza = new int[2];
 
     String posicionX = Character.toString(coordenada.charAt(0));
-    String posicionY = Character.toString(coordenada.charAt(1));
+    int posicionY = Character.getNumericValue(coordenada.charAt(1));
 
     switch (posicionX) {
       case "a" -> {
@@ -74,6 +78,8 @@ public class Peon extends Pieza {
         posicionPieza[0] = 7;
       }
     }
+    
+    posicionPieza[1] = posicionY;
 
     return posicionPieza;
   }
