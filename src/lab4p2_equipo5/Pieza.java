@@ -59,5 +59,5 @@ public abstract class Pieza {
     return "Pieza{" + "coordenadaPieza=" + coordenadaPieza + ", coordenadaMov=" + coordenadaMov + ", colorPieza=" + colorPieza + '}';
   }
   
-  public abstract boolean movimiento(String coordenadaPieza, String coordenadaMov, Object tablero);
+  public abstract boolean movimiento(String coordenadaPieza, String coordenadaMov, Object[][] tablero);
 }
