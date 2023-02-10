@@ -61,7 +61,15 @@ public class Peon extends Pieza {
           }
         }
       } else { // Valicar si desea comer o no
-        
+          if(getColorPieza() == 0) {
+            if (asciiPiezaMov >= 65 || asciiPiezaMov <= 90) {
+              if(posicionMovPiezaY - posicionPiezaY == 1 && posicionMovPiezaX - posicionPiezaX == 1) {
+                check = true;
+                setComio(true);
+                setPiezaComida(((Pieza) tablero[posicionMovPiezaX][posicionMovPiezaY]).getNombre());
+              }
+            }
+          }
       }
       
     }
