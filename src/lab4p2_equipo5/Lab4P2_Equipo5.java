@@ -45,41 +45,42 @@ public class Lab4P2_Equipo5 {
       System.out.println("Ingrese la coordenada en el formato: ");
 
       entrada = leer.nextLine();
+        if (!entrada.equals("gusbai")) {
+            // validarFormato(entrada);
+            // Llamar a los comands
+            String[] comandos = comandos(entrada);
 
-      // validarFormato(entrada);
-      // Llamar a los comands
-      String[] comandos = comandos(entrada);
+            String coordenadaPieza = comandos[0];
+            String coordenadaPiezaMov = comandos[1];
 
-      String coordenadaPieza = comandos[0];
-      String coordenadaPiezaMov = comandos[1];
+            // Posicion en ints
+            int[] posicionPieza = transformarPosicion(coordenadaPieza);
+            int posicionPiezaX = posicionPieza[0];
+            int posicionPiezaY = posicionPieza[1];
 
-      // Posicion en ints
-      int[] posicionPieza = transformarPosicion(coordenadaPieza);
-      int posicionPiezaX = posicionPieza[0];
-      int posicionPiezaY = posicionPieza[1];
+            System.out.println(posicionPiezaX);
+            System.out.println(posicionPiezaY);
 
-      System.out.println(posicionPiezaX);
-      System.out.println(posicionPiezaY);
+            // Posicion en ints de pieza a mover
+            int[] posicionPiezaMov = transformarPosicion(coordenadaPiezaMov);
+            int posicionMovPiezaX = posicionPiezaMov[0];
+            int posicionMovPiezaY = posicionPiezaMov[1];
 
-      // Posicion en ints de pieza a mover
-      int[] posicionPiezaMov = transformarPosicion(coordenadaPiezaMov);
-      int posicionMovPiezaX = posicionPiezaMov[0];
-      int posicionMovPiezaY = posicionPiezaMov[1];
+            if (tablero[posicionPiezaX][posicionPiezaY] instanceof Pieza) {
+              boolean checkMov = ((Pieza) tablero[posicionPiezaX][posicionPiezaY]).movimiento(coordenadaPieza, coordenadaPiezaMov, tablero);
 
-      if (tablero[posicionPiezaX][posicionPiezaY] instanceof Pieza) {
-        boolean checkMov = ((Pieza) tablero[posicionPiezaX][posicionPiezaY]).movimiento(coordenadaPieza, coordenadaPiezaMov, tablero);
+              if (checkMov) {
+                tablero[posicionMovPiezaX][posicionMovPiezaY] = tablero[posicionPiezaX][posicionPiezaY];
+                tablero[posicionPiezaX][posicionPiezaY] = " ";
 
-        if (checkMov) {
-          tablero[posicionMovPiezaX][posicionMovPiezaY] = tablero[posicionPiezaX][posicionPiezaY];
-          tablero[posicionPiezaX][posicionPiezaY] = " ";
-
-          imprimirTablero(tablero);
-        } else {
-          System.out.println("Mov incorrecto");
+                imprimirTablero(tablero);
+              } else {
+                System.out.println("Mov incorrecto");
+              }
+            } else {
+              System.out.println("Seleccionaste un espacio vacio");
+            }
         }
-      } else {
-        System.out.println("Seleccionaste un espacio vacio");
-      }
 
     } while (!entrada.equals("gusbai"));
 
