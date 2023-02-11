@@ -107,16 +107,4 @@ public class Dama extends Pieza {
 
     return posicionPieza;
   }
-  
-  // Metodo para validar la entrada
-  public boolean validarFormato(String entrada) {
-    boolean check = false;
-    
-    // Check each char at the entrada String
-    if(entrada.charAt(0) == 'a') {
-      
-    }
-    
-    return check;
-  }
 }

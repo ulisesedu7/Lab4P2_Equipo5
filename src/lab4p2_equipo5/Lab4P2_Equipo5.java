@@ -1,15 +1,55 @@
 package lab4p2_equipo5;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Lab4P2_Equipo5 {
 
   public static Object[][] tablero = new Object[8][8];
+  public static String entrada;
+  public static Scanner leer = new Scanner(System.in);
 
   public static void main(String[] args) {
     tableroInicial();
     crearTablero();
+    
+    menu();
+  }
+
+  public static void menu() {
+    int resp = 0;
+    
+    do {
+      System.out.println("-----CHESS------");
+      System.out.println("1- Jugar");
+      System.out.println("2- Salir");
+      System.out.println("Ingrese una opcion: ");
+      resp = leer.nextInt();
+
+      if (resp == 1) {
+        System.out.println("Nombre del primer jugador: [piezas blancas]");
+        leer.nextLine();
+        String jugador1 = leer.nextLine();
+        System.out.println("Nombre del segundo jugador: [piezas negras]");
+        String jugador2 = leer.nextLine();
+        
+        game();
+      }
+    } while (resp != 2);
+  }
+  
+  public static void game() {
+    System.out.println("Este es el tablero: ");
     imprimirTablero(tablero);
+    
+    do {
+      System.out.println("Ingrese la coordenada en el formato: ");
+      
+      entrada = leer.nextLine();
+      
+      validarFormato(entrada);
+      
+    } while (!entrada.equals("gusbai"));
+    
   }
 
   public static void imprimirTablero(Object[][] tablero) {
@@ -22,14 +62,14 @@ public class Lab4P2_Equipo5 {
       System.out.println("");
       System.out.print(row + 1 + " ");
       for (int col = 0; col < tablero[row].length; col += 1) {
-        if(tablero[row][col] instanceof Pieza) {
-         System.out.print("[" + ((Pieza) tablero[row][col]).getNombre() + "] "); 
+        if (tablero[row][col] instanceof Pieza) {
+          System.out.print("[" + ((Pieza) tablero[row][col]).getNombre() + "] ");
         } else {
           System.out.print("[" + tablero[row][col] + "] ");
         }
       }
     }
-    
+
     System.out.println();
     System.out.println();
   }
@@ -86,6 +126,31 @@ public class Lab4P2_Equipo5 {
     tablero[0][3] = new Dama("d1", 1, "D");
     tablero[7][3] = new Dama("d8", 0, "d");
 
+  }
+
+  // Aqui esta el metodo split
+  public static String[] comandos(String cadena) {
+    String cad = "";
+    for (int i = 0; i < cadena.length(); i++) {
+      char c = cadena.charAt(i);
+      if (c != 'P' || c != 'p' || c != '|') {
+        cad += c;
+      }
+    }
+    String arreglo[] = cadena.split("-");
+
+    return arreglo;
+  }
+  
+  // Validar formato 
+  // Metodo para validar la entrada
+  public static void validarFormato(String entrada) {
+    boolean check = false;
+    
+    // Check each char at the entrada String
+    if(entrada.charAt(0) == 'a') {
+      
+    }    
   }
 
 }
