@@ -1,15 +1,88 @@
 package lab4p2_equipo5;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Lab4P2_Equipo5 {
 
   public static Object[][] tablero = new Object[8][8];
+  public static String entrada;
+  public static Scanner leer = new Scanner(System.in);
 
   public static void main(String[] args) {
     tableroInicial();
     crearTablero();
+
+    menu();
+  }
+
+  public static void menu() {
+    int resp = 0;
+
+    do {
+      System.out.println("-----CHESS------");
+      System.out.println("1- Jugar");
+      System.out.println("2- Salir");
+      System.out.println("Ingrese una opcion: ");
+      resp = leer.nextInt();
+
+      if (resp == 1) {
+        System.out.println("Nombre del primer jugador: [piezas blancas]");
+        leer.nextLine();
+        String jugador1 = leer.nextLine();
+        System.out.println("Nombre del segundo jugador: [piezas negras]");
+        String jugador2 = leer.nextLine();
+
+        game();
+      }
+    } while (resp != 2);
+  }
+
+  public static void game() {
+    System.out.println("Este es el tablero: ");
     imprimirTablero(tablero);
+
+    do {
+      System.out.println("Ingrese la coordenada en el formato: ");
+
+      entrada = leer.nextLine();
+
+      // validarFormato(entrada);
+      // Llamar a los comands
+      String[] comandos = comandos(entrada);
+
+      String coordenadaPieza = comandos[0];
+      String coordenadaPiezaMov = comandos[1];
+
+      // Posicion en ints
+      int[] posicionPieza = transformarPosicion(coordenadaPieza);
+      int posicionPiezaX = posicionPieza[0];
+      int posicionPiezaY = posicionPieza[1];
+
+      System.out.println(posicionPiezaX);
+      System.out.println(posicionPiezaY);
+
+      // Posicion en ints de pieza a mover
+      int[] posicionPiezaMov = transformarPosicion(coordenadaPiezaMov);
+      int posicionMovPiezaX = posicionPiezaMov[0];
+      int posicionMovPiezaY = posicionPiezaMov[1];
+
+      if (tablero[posicionPiezaX][posicionPiezaY] instanceof Pieza) {
+        boolean checkMov = ((Pieza) tablero[posicionPiezaX][posicionPiezaY]).movimiento(coordenadaPieza, coordenadaPiezaMov, tablero);
+
+        if (checkMov) {
+          tablero[posicionMovPiezaX][posicionMovPiezaY] = tablero[posicionPiezaX][posicionPiezaY];
+          tablero[posicionPiezaX][posicionPiezaY] = " ";
+
+          imprimirTablero(tablero);
+        } else {
+          System.out.println("Mov incorrecto");
+        }
+      } else {
+        System.out.println("Seleccionaste un espacio vacio");
+      }
+
+    } while (!entrada.equals("gusbai"));
+
   }
 
   public static void imprimirTablero(Object[][] tablero) {
@@ -22,14 +95,14 @@ public class Lab4P2_Equipo5 {
       System.out.println("");
       System.out.print(row + 1 + " ");
       for (int col = 0; col < tablero[row].length; col += 1) {
-        if(tablero[row][col] instanceof Pieza) {
-         System.out.print("[" + ((Pieza) tablero[row][col]).getNombre() + "] "); 
+        if (tablero[row][col] instanceof Pieza) {
+          System.out.print("[" + ((Pieza) tablero[row][col]).getNombre() + "] ");
         } else {
           System.out.print("[" + tablero[row][col] + "] ");
         }
       }
     }
-    
+
     System.out.println();
     System.out.println();
   }
@@ -86,6 +159,75 @@ public class Lab4P2_Equipo5 {
     tablero[0][3] = new Dama("d1", 1, "D");
     tablero[7][3] = new Dama("d8", 0, "d");
 
+  }
+
+  // Aqui esta el metodo split
+  public static String[] comandos(String cadena) {
+    String cad = "";
+    for (int i = 2; i < cadena.length(); i++) {
+      char c = cadena.charAt(i);
+      cad += c;
+    }
+    String arreglo[] = cad.split("-");
+
+    return arreglo;
+  }
+
+  // Validar formato 
+  // Metodo para validar la entrada
+  public static void validarFormato(String entrada) {
+    boolean check = false;
+
+    // Check each char at the entrada String
+    if (entrada.charAt(0) == 'a') {
+
+    }
+  }
+
+  // Transformar coordenada
+  public static int[] transformarPosicion(String coordenada) {
+    int[] posicionPieza = new int[2];
+
+    String posicionY = Character.toString(coordenada.charAt(0));
+    int posicionX = Character.getNumericValue(coordenada.charAt(1));
+
+    switch (posicionY) {
+      case "a" -> {
+        posicionPieza[0] = 0;
+      }
+
+      case "b" -> {
+        posicionPieza[0] = 1;
+      }
+
+      case "c" -> {
+        posicionPieza[0] = 2;
+      }
+
+      case "d" -> {
+        posicionPieza[0] = 3;
+      }
+
+      case "e" -> {
+        posicionPieza[0] = 4;
+      }
+
+      case "f" -> {
+        posicionPieza[0] = 5;
+      }
+
+      case "g" -> {
+        posicionPieza[0] = 6;
+      }
+
+      case "h" -> {
+        posicionPieza[0] = 7;
+      }
+    }
+
+    posicionPieza[1] = posicionX - 1;
+
+    return posicionPieza;
   }
 
 }
