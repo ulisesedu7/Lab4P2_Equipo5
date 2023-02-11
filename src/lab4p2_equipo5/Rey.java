@@ -46,8 +46,13 @@ public class Rey extends Pieza{
                     break;
            }
            if( (y1-1 == y && x2 == xx)||(y1+1 == y && x2 == xx)||(xx+1 == x2&& y == y1)||(xx-1 == x2&&y == y1)||(xx+1 == x2&& y ==y1-1)||(xx+1==x2&&y-1==y1)||(xx == x2+1&&y==y-1)||(xx == x2+1&&y==y+1)  ){
-            
-        }
+            if(colorPieza != ((Pieza)tablero[x2][y1-1]).getColorPieza() ){
+                       temp = true;
+                   }
+                   
+               }else if( ((String)tablero[x2][y1-1]).equals(" ")){
+                   temp = true;
+               }
         }
         return temp;
     }
