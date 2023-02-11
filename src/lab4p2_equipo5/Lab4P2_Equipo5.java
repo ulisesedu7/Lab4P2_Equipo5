@@ -58,9 +58,6 @@ public class Lab4P2_Equipo5 {
             int posicionPiezaX = posicionPieza[0];
             int posicionPiezaY = posicionPieza[1];
 
-            System.out.println(posicionPiezaX);
-            System.out.println(posicionPiezaY);
-
             // Posicion en ints de pieza a mover
             int[] posicionPiezaMov = transformarPosicion(coordenadaPiezaMov);
             int posicionMovPiezaX = posicionPiezaMov[0];
@@ -181,7 +178,7 @@ public class Lab4P2_Equipo5 {
 
     // Check each char at the entrada String
     if (entrada.charAt(0) == 'a') {
-
+        
     }
   }
 
