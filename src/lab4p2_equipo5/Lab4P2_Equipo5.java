@@ -46,38 +46,41 @@ public class Lab4P2_Equipo5 {
 
       entrada = leer.nextLine();
         if (!entrada.equals("gusbai")) {
-            // validarFormato(entrada);
+            
             // Llamar a los comands
-            String[] comandos = comandos(entrada);
+            if (validarFormato(entrada)==true) {
+                String[] comandos = comandos(entrada);
 
-            String coordenadaPieza = comandos[0];
-            String coordenadaPiezaMov = comandos[1];
+                String coordenadaPieza = comandos[0];
+                String coordenadaPiezaMov = comandos[1];
 
-            // Posicion en ints
-            int[] posicionPieza = transformarPosicion(coordenadaPieza);
-            int posicionPiezaX = posicionPieza[0];
-            int posicionPiezaY = posicionPieza[1];
+                // Posicion en ints
+                int[] posicionPieza = transformarPosicion(coordenadaPieza);
+                int posicionPiezaX = posicionPieza[0];
+                int posicionPiezaY = posicionPieza[1];
 
-            // Posicion en ints de pieza a mover
-            int[] posicionPiezaMov = transformarPosicion(coordenadaPiezaMov);
-            int posicionMovPiezaX = posicionPiezaMov[0];
-            int posicionMovPiezaY = posicionPiezaMov[1];
+                // Posicion en ints de pieza a mover
+                int[] posicionPiezaMov = transformarPosicion(coordenadaPiezaMov);
+                int posicionMovPiezaX = posicionPiezaMov[0];
+                int posicionMovPiezaY = posicionPiezaMov[1];
 
-            if (tablero[posicionPiezaX][posicionPiezaY] instanceof Pieza) {
-              boolean checkMov = ((Pieza) tablero[posicionPiezaX][posicionPiezaY]).movimiento(coordenadaPieza, coordenadaPiezaMov, tablero);
+                if (tablero[posicionPiezaX][posicionPiezaY] instanceof Pieza) {
+                  boolean checkMov = ((Pieza) tablero[posicionPiezaX][posicionPiezaY]).movimiento(coordenadaPieza, coordenadaPiezaMov, tablero);
 
-              if (checkMov) {
-                tablero[posicionMovPiezaX][posicionMovPiezaY] = tablero[posicionPiezaX][posicionPiezaY];
-                tablero[posicionPiezaX][posicionPiezaY] = " ";
+                  if (checkMov) {
+                    tablero[posicionMovPiezaX][posicionMovPiezaY] = tablero[posicionPiezaX][posicionPiezaY];
+                    tablero[posicionPiezaX][posicionPiezaY] = " ";
 
-                imprimirTablero(tablero);
-              } else {
-                System.out.println("Mov incorrecto");
-              }
-            } else {
-              System.out.println("Seleccionaste un espacio vacio");
+                    imprimirTablero(tablero);
+                  } else {
+                    System.out.println("Mov incorrecto");
+                  }
+                } else {
+                  System.out.println("Seleccionaste un espacio vacio");
+                }
             }
         }
+                
 
     } while (!entrada.equals("gusbai"));
 
@@ -173,13 +176,21 @@ public class Lab4P2_Equipo5 {
 
   // Validar formato 
   // Metodo para validar la entrada
-  public static void validarFormato(String entrada) {
+  public static boolean validarFormato(String entrada) {
     boolean check = false;
+    char c1 = entrada.charAt(0);//P o p
+    char c2 = entrada.charAt(1);//|
+    char c3 = entrada.charAt(2);//e
+    char c4 = entrada.charAt(3);//numero del 1-8
+    char c5 = entrada.charAt(4);//-
+    char c6 = entrada.charAt(5);//e
+    char c7 = entrada.charAt(6);//numero del 1-8
 
     // Check each char at the entrada String
-    if (entrada.charAt(0) == 'a') {
-        
-    }
+    if (entrada.length()==7&&c1=='P'||c1=='p'&&c2=='|'&&c3=='e'&&c5=='-'&&c6=='e'&&(c4=='1'||c4=='2'||c4=='3'||c4=='4'||c4=='5'||c4=='6'||c4=='7'||c4=='8')&&(c7=='1'||c7=='2'||c7=='3'||c7=='4'||c7=='5'||c7=='6'||c7=='7'||c7=='8')) {
+        check = true;
+    } 
+    return check;
   }
 
   // Transformar coordenada
