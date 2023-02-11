@@ -1,6 +1,8 @@
 
 package lab4p2_equipo5;
 
+import java.util.Scanner;
+
 
 public class Torre extends Pieza{
 
@@ -15,12 +17,6 @@ public class Torre extends Pieza{
     public boolean movimiento(String coordenadaPieza, String coordenadaMov, Object[][] tablero) {
         boolean temp= false;
         
-        if( colorPieza == 1){
-            //Blanca
-            
-        }else{
-            //negra
-        }
         if (coordenadaPieza.equals(getCoordenadaPieza())){
            boolean movimiento =false;
            boolean movimiento2 = false;
@@ -57,18 +53,30 @@ public class Torre extends Pieza{
                     break;
                     
            }
-            for (int i = y; i < y1; i++) {
-                if(tablero[x2][i].equals(" ")){
+            for (int i = y - 1; i < y1 - 1; i++) {
+                if (tablero[x2][i].equals(" ")) {
                     movimiento = true;
-                }else{
+                } else {
                     movimiento2 = false;
                     break;
                 }
-                for (int j = x; j <= x2; j++) {
-                    
-                }
-            //fors para validar que no exista una pieza enfrente del movimiento
             }
+            for (int i = y-1; i > y1-1; i--) {
+                if (tablero[x2][i].equals(" ")) {
+                    movimiento = true;
+                } else {
+                    movimiento2 = false;
+                    break;
+                }
+            }
+            for (int j = xx; j <= x2; j++) {
+                if (tablero[j][y1 - 1].equals(" ")) {
+                    movimiento2 = true;
+                } else {
+                    movimiento2 = false;
+                }
+            }
+           //fors para validar que no exista una pieza enfrente del movimiento
            if(x == x1){
                if(y != y1){
                    if(y1 > 0 && y1 < 9){
@@ -87,16 +95,33 @@ public class Torre extends Pieza{
             if(movimiento == true && movimiento2 == true){
                if( ((String)tablero[x2][y1-1]).length() > 0 ){
                    if(colorPieza != ((Pieza)tablero[x2][y1-1]).getColorPieza() ){
-                       
+                       temp = true;
                    }
                    
                }else if( ((String)tablero[x2][y1-1]).equals(" ")){
-                   
+                   temp = true;
                }
            }
             
         }  
     return temp;
     }
-    
+    public void Menu(){
+        int op= 0;
+        Scanner leer = new Scanner (System.in);
+        do{
+            System.out.println("-----CHESS------");
+            System.out.println("1- Jugar");
+            System.out.println("2- Salir");
+            System.out.println("Ingrese una opcion: ");
+            int resp = leer.nextInt();
+            
+            if (op == 1){
+                System.out.println("Nombre del primer jugador: [piezas blancas]");
+                String jugador1 = leer.next();
+                System.out.println("Nombre del segundo jugador: [piezas negras]");
+                String jugador2 = leer.next();
+            }
+        }while(op != 2);
+    }
 }
