@@ -46,12 +46,12 @@ public class Dama extends Pieza {
       }
     } else { // Valicar si desea comer o no
       if (getColorPieza() == 0) {
-        if (asciiPiezaMov >= 65 && asciiPiezaMov <= 90) {
+        if (asciiPiezaMov >= 65 || asciiPiezaMov <= 90) {
           check = true;
           setComio(true);
           setPiezaComida(((Pieza) tablero[posicionMovPiezaX][posicionMovPiezaY]).getNombre());
         } else {
-          if (asciiPiezaMov >= 97 && asciiPiezaMov <= 122) {
+          if (asciiPiezaMov >= 97 || asciiPiezaMov <= 122) {
             check = true;
             setComio(true);
             setPiezaComida(((Pieza) tablero[posicionMovPiezaX][posicionMovPiezaY]).getNombre());
