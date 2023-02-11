@@ -128,7 +128,7 @@ public class Caballo extends Pieza{
         return val;
     }
     ////Aqui esta el metodo split
-    public void comandos(String cadena){
+    /**public void comandos(String cadena){
         String cad = "";
         for (int i = 0; i < cadena.length(); i++) {
             char c = cadena.charAt(i);
@@ -138,7 +138,7 @@ public class Caballo extends Pieza{
         }
         String arreglo[]= cadena.split("-");
         
-    }
+    }**/
     
     
     
